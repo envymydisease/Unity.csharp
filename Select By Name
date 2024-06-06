@@ -1,0 +1,44 @@
+// Unity Editor Simple Select By Name Method
+
+
+using UnityEditor;
+using UnityEngine;
+
+public class SelectObjectsByName : EditorWindow
+{
+    private string objectName = "Stars";
+
+    [MenuItem("Tools/Select Objects By Name")]
+    public static void ShowWindow()
+    {
+        GetWindow<SelectObjectsByName>("Select Objects By Name");
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label("Select Objects By Name", EditorStyles.boldLabel);
+
+        objectName = EditorGUILayout.TextField("Object Name", objectName);
+
+        if (GUILayout.Button("Select Objects"))
+        {
+            SelectObjects();
+        }
+    }
+
+    private void SelectObjects()
+    {
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        List<GameObject> objectsToSelect = new List<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == objectName)
+            {
+                objectsToSelect.Add(obj);
+            }
+        }
+
+        Selection.objects = objectsToSelect.ToArray();
+    }
+}
