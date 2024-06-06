@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SelectObjectsByName : EditorWindow
 {
-    private string objectName = "Stars";
+    private string objectName = "Name";
 
     [MenuItem("Tools/Select Objects By Name")]
     public static void ShowWindow()
